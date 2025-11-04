@@ -34,3 +34,17 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 ```
+
+# Pre-Push Hook (Run Tests Before Push)
+Runs tests before allowing a push.
+File: .git/hooks/pre-push
+
+```
+#!/bin/sh
+echo "Running pre-push hook: Running tests..."
+npm test
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Fix errors before pushing."
+  exit 1
+fi
+```
